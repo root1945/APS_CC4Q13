@@ -7,6 +7,7 @@ public class Lista {
     private Texto cabeca = null;
     private Texto cauda = null;
     private String[] lista = new String[10];
+    private static String[] name = new String[10];
     private String tudo = "";
     private int total = 0;
 
@@ -90,6 +91,49 @@ public class Lista {
             aux = aux.getProximo();
         }
         total++;
+    }
+
+    public static void quicksortn(int low, int high) {
+        int i = low, j = high;
+        String pivot = name[low + (high - low) / 2];
+        while (i <= j) {
+            while (name[i].compareToIgnoreCase(pivot) < 0) {
+                i++;
+            }
+            while (name[j].compareToIgnoreCase(pivot) > 0) {
+                j--;
+            }
+            if (i <= j) {
+                exchange(i, j);
+                i++;
+                j--;
+            }
+        }
+        if (low < j) {
+            quicksortn(low, j);
+        }
+        if (i < high) {
+            quicksortn(i, high);
+        }
+    }
+
+    private static void exchange(int i, int j) {
+        String temp = name[i];
+        name[i] = name[j];
+        name[j] = temp;
+    }
+
+    public static void inserirListaQuickSort(int indice, String texto) {
+        name[indice] = texto;
+    }
+    
+    public static String mostrarListaQuickSort(){
+        String tudo = "";
+        for(int i = 0; i < name.length; i++){
+            if(name[i] == null) break;
+            tudo += "\n" + name[i];
+        }
+        return tudo;
     }
 
     public String[] getLista() {

@@ -214,7 +214,25 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAdicionarActionPerformed
 
     private void buttonReadQuickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReadQuickActionPerformed
+        String path = "C:\\Users\\dioni\\OneDrive\\Documentos\\NetBeansProjects\\APS_CC4Q13\\src\\main\\java\\Arquivos";
+        try {
+            BufferedReader br = new BufferedReader(
+            new FileReader(path + "\\" + String.valueOf(textPath.getText()) + ".txt"));
+            String line = br.readLine();
+            String texto = line;
+            int i = 0;
+            while(line != null){
+                texto += "\n" + br.readLine();
+                line = br.readLine();
+                lista.inserirListaQuickSort(i, line);
+                i++;
+            }
+            br.close();
 
+            textArea.setText(lista.mostrarListaQuickSort());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_buttonReadQuickActionPerformed
 
     /**
