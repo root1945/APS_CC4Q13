@@ -91,36 +91,6 @@ public class Lista {
         }
         total++;
     }
-    
-    public static void quicksortn(String[] name, int low, int high) {
-        int i = low, j = high;
-        String pivot = name[low + (high - low) / 2];
-        while (i <= j) {
-            while (name[i].compareToIgnoreCase(pivot) < 0) {
-                i++;
-            }
-            while (name[j].compareToIgnoreCase(pivot) > 0) {
-                j--;
-            }
-            if (i <= j) {
-                exchange(name, i, j);
-                i++;
-                j--;
-            }
-        }
-        if (low < j) {
-            quicksortn(name, low, j);
-        }
-        if (i < high) {
-            quicksortn(name, i, high);
-        }
-    }
-
-    private static void exchange(String[] name, int i, int j) {
-        String temp = name[i];
-        name[i] = name[j];
-        name[j] = temp;
-    }
 
     public String[] getLista() {
         return lista;
